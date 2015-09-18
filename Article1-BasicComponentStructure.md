@@ -3,7 +3,7 @@
 This post is part of a three part series that I am writing about how you can create a well designed and structured React.JS application. In part 1 we will delve into the basics of React.JS and how we can convert your application idea into a working React.JS component. After that we will create a small piece of backend code in Hapi that will interact with a easy to use disk adapter for simplicity (part 2) and last but not least we will then create the interaction between our component and API by using the flux architecture. So let's get started.
 
 ## 2. How components work
-React.JS it's vision is to enable us to re-use code quickly by splitting it up in components. Components are small pieces of code that are bundled in one little package. These componens then have a state that contains the information about that specific component. Think for example of an input box, it's state would be the value that you put in it it's properties would be the name, placeholder, type, ...
+The vision of React is to enable us to re-use code quickly by splitting it up in components. Components are small pieces of code that are bundled in one little package. These componens then have a state that contains the information about that specific component. Think for example of an input box, it's state would be the value that you put in it it's properties would be the name, placeholder, type, ...
 
 Every component is then able to perform actions (onClick, onChange, ...) which we can define through properties. I try to keep the idea of letting the components define actions through properties and my pages through stores. That way we got a state for a page but make sure that we can re-use the components.
 
@@ -13,7 +13,7 @@ By converting all our code into components we achieve multiple goals
 1. Maximum reusability; we can just drag and drop and re-use components (if they are written correctly)
 2. Better security; by recreating existing html components (for example input) we can prevent security issues from happening (think of xss).
 3. Fast POC building; when you have a library, you can just drag and drop existing components, apply a new style and you got a POC in a few hours instead of days.
-4. Complex forms are easy; Ever tried to make a page with 20 input fields in Angular, Plain html? Then you know forms are a pain! React makes this as aeasy as possible and we can even add validation and others by bundling it all in a single component.
+4. Complex forms are easy; ever tried to make a page with 20 input fields in Angular, plain HTML? Then you know forms are a pain! React makes this as easy as possible and we can even add validation and others by bundling it all in a single component.
 5. Need updates to your application when something changes? React got you covered, by using a store and state change listeners we are able to update just the components that are needed. No need to refresh the complete page.
 
 These advantages are in my personal opinion the future of the web. No need to juggle around bad code to prevent XSS injection attacks, easy forms and most import re-usability is what we need!
@@ -47,6 +47,7 @@ Now we got the different components to create. Important to do now is to imagine
 
 ## 5. The folder structure
 Creating the folder structure is the backbone of our application, it should be dynamic to grow over time, but not to dynamic so that we can actually understand it. While creating a private project for myself I found out over time that the following directory structure is a basic one where I can work with.
+Keep in mind that there might be several things that you will not understand yet. Do not worry, these things will all be explained in the following parts. We just define the folder structure here to be able to have the architecture set up already.
 
 > Please note that this folder structure is purely personall, you can change this to your likings but I myself found it to be working well.
 
