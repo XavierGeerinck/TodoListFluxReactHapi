@@ -47,10 +47,10 @@ class TodoList extends React.Component {
 		self.setState({
 			items: self.state.items.map(i => {
 				if (item.id === i.id) {
-					i.isChecked = true;
+					i.isChecked = !item.isChecked;
 
 					// Change key since it has been checked!
-					i.key = "key_" + i.id + "_" + true;
+					i.key = "key_" + i.id + "_" + i.isChecked;
 				}
 
 				return i;

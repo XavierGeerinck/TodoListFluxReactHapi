@@ -34,7 +34,7 @@ The TodoList folder will now look like this:
 ### 3.1. Writing the TodoList.js part
 We are finally at the part of writing a component, it has been a long way but now the real work starts. Writing the component. Let us first start by defining the structure of the TodoList.js part. It will exist out of the Add box and the Overview box. So, add 2 elements `<TodoListAdd />`` and `<TodoListItems />` which will show our items. Your class will look like this then:
 
-```
+```js
 import React, { PropTypes } from 'react';
 import TodoListAdd from './TodoListAdd';
 import TodoListItems from './TodoListItems';
@@ -66,9 +66,9 @@ If you did everything right, when you reload the page it will show a blank page 
 The add function will allow us to insert a TodoItem by entering it's info into a textbox and clicking on the add button. We will also do this, so add a `<input type="text" ref="input_todo" />` and a `<input type="submit" />` element in the render function of the TodoListAdd part.
 
 You will get this:
-```
+```js
 <div className="TodoListAdd">
-	<form onSubmit={this.\_handleOnSubmit.bind(this)}>
+	<form onSubmit={this._handleOnSubmit.bind(this)}>
 		<input type="text" ref="input_todo" />
 		<input type="submit" />
 	</form>
@@ -76,8 +76,8 @@ You will get this:
 ```
 
 Note that I have already went ahead and created the event handler, it will call a local function `_handleOnSubmit` when a user submits the form. This function is here:
-```
-\_handleOnSubmit() {
+```js
+_handleOnSubmit() {
 	var input = this.refs.input_todo.getDOMNode().value;
 	console.log(input);
 }
@@ -95,7 +95,7 @@ To make sure that we allow this, we can add a <MODULE>.propTypes = { } and defin
 
 The resulting class looks like this:
 
-```
+```js
 import React, { PropTypes } from 'react';
 
 class TodoListAdd extends React.Component {
@@ -103,7 +103,7 @@ class TodoListAdd extends React.Component {
 		super(props);
 	}
 
-	\_handleOnSubmit() {
+	_handleOnSubmit() {
 		var input = this.refs.input_todo.getDOMNode().value;
 
 		console.log(this.props);
@@ -113,7 +113,7 @@ class TodoListAdd extends React.Component {
 	render() {
 		return (
 			<div className="TodoListAdd">
-				<form onSubmit={this.\_handleOnSubmit.bind(this)}>
+				<form onSubmit={this._handleOnSubmit.bind(this)}>
 					<input type="text" ref="input_todo" />
 					<input type="submit" />
 				</form>
@@ -139,7 +139,7 @@ The code for adding the item is done, we will now go on to displaying the items.
 Showing the TodoListItems is easy, we just check the items that were passed through an attribute and render those. The rendered items are then in turn TodoListItem components which will call the render function in the TodoListItem.js file.
 
 **TodoListItems.js**
-```
+```js
 import React, { PropTypes } from 'react';
 import TodoListItem from './TodoListItem';
 
@@ -175,7 +175,7 @@ export default TodoListItems;
 ```
 
 **TodoListItem.js**
-```
+```js
 import React, { PropTypes } from 'react';
 
 class TodoListItem extends React.Component {
@@ -208,7 +208,7 @@ export default TodoListItem;
 ### 3.5. Quickly testing what we have
 For a quick test of what we have now works, just change the content of your `TodoList.js` file to this:
 
-```
+```js
 import React, { PropTypes } from 'react';
 import TodoListAdd from './TodoListAdd';
 import TodoListItems from './TodoListItems';
@@ -218,7 +218,7 @@ class TodoList extends React.Component {
 		super(props);
 	}
 
-	\_handleAddSubmit(value) {
+	_handleAddSubmit(value) {
 		console.log('Received item: ' + value);
 	}
 
@@ -226,7 +226,7 @@ class TodoList extends React.Component {
 		const items = [ "test1", "test2", "test3", "test4" ];
 		return (
 			<div className="TodoList">
-				<TodoListAdd handleOnSubmit={this.\_handleAddSubmit.bind(this)}/>
+				<TodoListAdd handleOnSubmit={this._handleAddSubmit.bind(this)}/>
 				<TodoListItems items={items} />
 			</div>
 		);
@@ -243,7 +243,7 @@ Of course this is not yet how we want it! We still need to define a state which 
 ### 3.6. Finishing the TodoList Component
 Let us finish this adding now. For that to happen, we will first have to convert our TodoList to work with states. So replace the content with this:
 
-```
+```js
 import React, { PropTypes } from 'react';
 import update from 'react/lib/update';
 import TodoListAdd from './TodoListAdd';
@@ -258,7 +258,7 @@ class TodoList extends React.Component {
 		}
 	}
 
-	\_handleAddSubmit(value) {
+	_handleAddSubmit(value) {
 		var self = this;
 
 		self.setState({
@@ -273,7 +273,7 @@ class TodoList extends React.Component {
 
 		return (
 			<div className="TodoList">
-				<TodoListAdd handleOnSubmit={this.\_handleAddSubmit.bind(this)}/>
+				<TodoListAdd handleOnSubmit={this._handleAddSubmit.bind(this)}/>
 				<TodoListItems items={items} />
 			</div>
 		);
@@ -292,7 +292,7 @@ What we will do for the TodoItem, is add a checkbox and a removal button and bin
 
 Now our **TodoItem.js** files becomes this:
 
-```
+```js
 import React, { PropTypes } from 'react';
 
 class TodoListItem extends React.Component {
@@ -300,13 +300,13 @@ class TodoListItem extends React.Component {
 		super(props);
 	}
 
-	\_handleCheckItem(e) {
+	_handleCheckItem(e) {
 		e.preventDefault();
 
 		this.props.onCheckItem(this.props.item);
 	}
 
-	\_handleRemoveItem(e) {
+	_handleRemoveItem(e) {
 		e.preventDefault();
 
 		this.props.onRemoveItem(this.props.item);
@@ -319,10 +319,10 @@ class TodoListItem extends React.Component {
 		return (
 			<div className="TodoListItem">
 				<div className="TodoListItem-Check">
-					<input type="checkbox" ref="is_checked" checked={item.isChecked} onChange={this.\_handleCheckItem.bind(this)}/>
+					<input type="checkbox" ref="is_checked" checked={item.isChecked} onChange={this._handleCheckItem.bind(this)}/>
 				</div>
 				<span>{item.value}</span>
-				<button onClick={this.\_handleRemoveItem.bind(this)}><i className="fa fa-remove"></i></button>
+				<button onClick={this._handleRemoveItem.bind(this)}><i className="fa fa-remove"></i></button>
 			</div>
 		);
 	}
@@ -342,7 +342,7 @@ export default TodoListItem;
 ```
 
 **TodoListItems.js**
-```
+```js
 import React, { PropTypes } from 'react';
 import TodoListItem from './TodoListItem';
 
@@ -381,7 +381,7 @@ export default TodoListItems;
 ```
 
 and **TodoList.js**
-```
+```js
 import React, { PropTypes } from 'react';
 import update from 'react/lib/update';
 import TodoListAdd from './TodoListAdd';
@@ -398,7 +398,7 @@ class TodoList extends React.Component {
 		}
 	}
 
-	\_handleAddSubmit(value) {
+	_handleAddSubmit(value) {
 		var self = this;
 
 		self.setState({
@@ -409,14 +409,14 @@ class TodoList extends React.Component {
 					value: value,
 
 					// Set initial key based on the id and the check state
-					key: "key_" + self.state.id_counter + "\_" + false
+					key: "key_" + self.state.id_counter + "_" + false
 				}]
 			}),
 			id_counter: self.state.id_counter + 1
 		});
 	}
 
-	\_onRemoveItem(item) {
+	_onRemoveItem(item) {
 		var self = this;
 
 		self.setState({
@@ -426,15 +426,15 @@ class TodoList extends React.Component {
 		});
 	}
 
-	\_onCheckItem(item) {
+	_onCheckItem(item) {
 		var self = this;
 		self.setState({
 			items: self.state.items.map(i => {
 				if (item.id === i.id) {
-					i.isChecked = true;
+					i.isChecked = !item.isChecked;
 
 					// Change key since it has been checked!
-					i.key = "key_" + i.id + "\_" + true;
+					i.key = "key_" + i.id + "_" + i.isChecked;
 				}
 
 				return i;
@@ -447,8 +447,8 @@ class TodoList extends React.Component {
 
 		return (
 			<div className="TodoList">
-				<TodoListAdd handleOnSubmit={this.\_handleAddSubmit.bind(this)}/>
-				<TodoListItems items={items} onRemoveItem={this.\_onRemoveItem.bind(this)} onCheckItem={this.\_onCheckItem.bind(this)}/>
+				<TodoListAdd handleOnSubmit={this._handleAddSubmit.bind(this)}/>
+				<TodoListItems items={items} onRemoveItem={this._onRemoveItem.bind(this)} onCheckItem={this._onCheckItem.bind(this)}/>
 			</div>
 		);
 	}
@@ -462,7 +462,7 @@ export default TodoList;
 ## 4. Adding some CSS
 So we are completely finished with the interaction part, now all that is left to do is to add some css code to make it better on the eye
 
-```
+```css
 .TODOList {
 	width: 400px;
 	margin: 0 auto;
@@ -542,3 +542,6 @@ So we are completely finished with the interaction part, now all that is left to
 	clear: both;
 }
 ```
+
+# 5. Finalize
+The application is now complete and we are able to use the module, however in a real world application we need to save the state to a database when we perform an action. This will be covered in parts 4 and 5 where we will write the backend and add interaction with the backend to the react.js application.

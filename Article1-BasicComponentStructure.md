@@ -65,7 +65,7 @@ Resulting in the following structure:
 ```
 
 ### <MODULE>.js example content
-```
+```js
 import React, { PropTypes } from 'react';
 import './<MODULE>.css';
 
@@ -86,14 +86,16 @@ export default <MODULE>;
 ```
 
 ### <MODULE>.css example content
+```css
 @import '../variables.css';
 
 .<MODULE>-Active {
 
 }
+```
 
 ### package.json example content
-```
+```json
 {
 	"name": "<MODULE>",
 	"private": true,

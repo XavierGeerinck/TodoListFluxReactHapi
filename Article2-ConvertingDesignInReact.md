@@ -8,7 +8,7 @@ An easy way to get started in a few minutes is by installing webpack. This is pr
 
 Start by creating a file called `webpack.config.js` in your root folder and paste the following content into it:
 
-```
+```js
 var path = require('path');
 var webpack = require('webpack');
 var node_modules_dir = path.resolve(__dirname, 'node_modules');
@@ -112,7 +112,7 @@ If we analyze this file then we can see that we will transform our Javascript wi
 
 The last file we will need to define before we will be able to start our environment is the **package.json** file.
 
-```
+```json
 {
   "name": "tutorial_react_flux_hapi",
   "version": "0.0.0",
@@ -174,7 +174,7 @@ The development environment is working, so we can finally start coding! When wor
 * `routes.js`: Here are our routes that will be used, only the / route will be used seeing that this is a 1 page app. I however included this so that your app is able to grow.
 
 **index.js**
-```
+```js
 import React from 'react';
 import routes from './routes';
 
@@ -183,7 +183,7 @@ React.render(routes, document.body);
 ```
 
 **index.html**
-```
+```js
 <!DOCTYPE html>
 <html>
 
@@ -202,7 +202,7 @@ React.render(routes, document.body);
 ```
 
 **routes.js**
-```
+```js
 import React from 'react/addons';
 import { Router, Route, IndexRoute  } from 'react-router';
 import App from './components/App';
@@ -227,7 +227,7 @@ To create this component, go to the App folder in src/components/App and create 
 Fill these in with the following content:
 
 **package.json**
-```
+```json
 {
 	"name": "App",
 	"private": true,
@@ -237,7 +237,7 @@ Fill these in with the following content:
 ```
 
 **App.js**
-```
+```js
 import React, { PropTypes } from 'react';
 import Router from 'react-router';
 import './App.css';
@@ -275,7 +275,7 @@ We start by creating our page, this way we are at least able to access our webpa
 
 For now we can put a HELLO WORLD string into the component so that we are able to test if it is all working nicely just as we want to. For that make your TODOListPage component look like this:
 
-```
+```js
 import React, { PropTypes } from 'react';
 
 class TODOList extends React.Component {

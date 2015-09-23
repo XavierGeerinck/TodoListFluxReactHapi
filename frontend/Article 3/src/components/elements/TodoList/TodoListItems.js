@@ -29,7 +29,9 @@ TodoListItems.propTypes = {
 }
 
 TodoListItems.defaultProps = {
-	items: []
+	items: [],
+	onRemoveItem: function () {},
+	onCheckItem: function () {}
 }
 
 export default TodoListItems;
