@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import TodoList from '../../elements/TodoList';
 
 class TODOList extends React.Component {
 	constructor(props) {
@@ -8,6 +9,8 @@ class TODOList extends React.Component {
 	render() {
 		return (
 			<div className="TODOList">
+				<h1>TodoList</h1>
+				<TodoList />
 			</div>
 		)
 	}

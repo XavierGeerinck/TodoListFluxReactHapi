@@ -1,0 +1,78 @@
+.TODOList {
+	width: 400px;
+	margin: 0 auto;
+}
+
+.TODOList h1 {
+	font-size: 16px;
+}
+
+.TodoListAdd {
+	border: 1px solid #d9d9d9;
+}
+
+.TodoListAdd input {
+	background-color: #f5f5f5;
+	border: none;
+	width: calc(100% - 40px);
+    box-sizing: border-box;
+	height: 30px;
+}
+
+.TodoListAdd input[type='submit'] {
+	width: 40px;
+	border-left: 1px solid #d9d9d9;
+}
+
+.TodoListAdd input[type='text'] {
+	padding: 7px 10px;
+}
+
+.TodoListItems {
+	margin-top: 20px;
+}
+
+.TodoListItem {
+	box-sizing: border-box;
+	background-color: #f5f5f5;
+	border: 1px solid #d9d9d9;
+	border-bottom: none;
+	height: 30px;
+}
+
+.TodoListItem:last-child {
+	border-bottom: 1px solid #d9d9d9;
+}
+
+.TodoListItem button {
+	height: 100%;
+	float: right;
+	border: none;
+	padding: 0;
+	margin: 0;
+	width: 40px;
+	border-left: 1px solid #d9d9d9;
+	background-color: transparent;
+}
+
+.TodoListItem span {
+	height: 100%;
+	float: left;
+	line-height: 30px;
+	font-size: 12px;
+	padding-left: 6px;
+}
+
+.TodoListItem .TodoListItem-Check {
+	height: 100%;
+	border-right: 1px solid #d9d9d9;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 20px;
+	float: left;
+	line-height: 30px;
+}
+
+.clear {
+	clear: both;
+}

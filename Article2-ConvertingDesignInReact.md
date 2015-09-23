@@ -1,4 +1,5 @@
 # Creating a TODO Application from scratch in React.JS / Flux / Hapi (part 2)
+# Creating the initial components to load a HELLO WORLD page
 ## 1. Introduction
 So in part 1 we explained why you should use React.JS and how it works, in this part we will set up the development environment and start creating our TODOList components that we have split up in the previous article.
 
@@ -97,7 +98,6 @@ var config = {
 		require('autoprefixer-core')(AUTOPREFIXER_BROWSERS)
 	],
 	plugins: [
-		new webpack.optimize.CommonsChunkPlugin('vendors', 'vendors.js'),
 		new webpack.DefinePlugin({"global.GENTLY": false})
 	],
 	node: {
@@ -195,7 +195,6 @@ React.render(routes, document.body);
 
 <body>
   <script src="http://localhost:8080/webpack-dev-server.js"></script>
-  <script type="text/javascript" src="vendors.js"></script>
   <script type="text/javascript" src="bundle.js"></script>
 </body>
 
@@ -209,10 +208,6 @@ import { Router, Route, IndexRoute  } from 'react-router';
 import App from './components/App';
 import TODOListPage from './components/pages/TODOList';
 
-// For history, run this and add it
-//let history = createBrowserHistory();
-
-// Define routes like: <Route path="/register" component={SignupPage} />
 var routes = (
     <Router>
         <Route path="/" component={App}>
@@ -244,12 +239,14 @@ Fill these in with the following content:
 **App.js**
 ```
 import React, { PropTypes } from 'react';
+import Router from 'react-router';
 import './App.css';
+var RouteHandler = Router.RouteHandler;
 
 class App extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+    constructor(props) {
+        super(props);
+    }
 
     render() {
         return (
@@ -260,13 +257,44 @@ class App extends React.Component {
     }
 }
 
+App.defaultProps = {
+
+};
+
+App.propTypes = {
+
+};
+
 export default App;
 ```
 
 **App.css (EMPTY)**
 
-## 5. Starting with our TODO Component
-### 5.1. The TODOList Page
+## 5. Testing the bootstrap
 We start by creating our page, this way we are at least able to access our webpage. To do this, bootstrap a TODOList component in the `src/components/pages` folder. Now we will fill in the render function, here just return a new div element with as class the TODOListPage name.
 
-### 5.2.
+For now we can put a HELLO WORLD string into the component so that we are able to test if it is all working nicely just as we want to. For that make your TODOListPage component look like this:
+
+```
+import React, { PropTypes } from 'react';
+
+class TODOList extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
+	render() {
+		return (
+			<div className="TODOList">
+			HELLO WORLD
+			</div>
+		)
+	}
+}
+
+export default TODOList;
+```
+
+When we now run `npm start` and navigate to `http://localhost:8080`, we will be presented with a nice HELLO WORLD body. Congratulations, we now got the initial bootstrap ready and we are able to start writing our TODOList components.
+
+The part of writing the other TODOList components will be tackled in part 3.
