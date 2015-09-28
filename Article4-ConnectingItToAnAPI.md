@@ -640,11 +640,11 @@ var TodoItem = require('../db/models/TodoItem');
 var Boom = require('boom');
 
 exports.create = function (userId, description) {
-    return UserSession.forge({ }).save();
+    return TodoItem.forge({ }).save();
 };
 
 exports.update = function (token, isChecked) {
-    return UserSession.where({ token: token }).save({ is_checked: isChecked });
+    return TodoItem.where({ token: token }).save({ is_checked: isChecked });
 };
 
 exports.delete = function (todoItemId) {
@@ -652,7 +652,7 @@ exports.delete = function (todoItemId) {
 };
 
 exports.getAll = function () {
-	return TodoItem.fetchAll();
+    return TodoItem.fetchAll();
 }
 ```
 
