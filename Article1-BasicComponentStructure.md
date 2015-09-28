@@ -4,7 +4,7 @@
 This post is part of a three part series that I am writing about how you can create a well designed and structured React.JS application. In part 1 we will delve into the basics of React.JS and how we can convert your application idea into a working React.JS component. After that we will create a small piece of backend code in Hapi that will interact with a easy to use disk adapter for simplicity (part 2) and last but not least we will then create the interaction between our component and API by using the flux architecture. So let's get started.
 
 ## 2. How components work
-The vision of React is to enable us to re-use code quickly by splitting it up in components. Components are small pieces of code that are bundled in one little package. These componens then have a state that contains the information about that specific component. Think for example of an input box, it's state would be the value that you put in it it's properties would be the name, placeholder, type, ...
+The vision of React is to enable us to re-use code quickly by splitting it up in components. Components are small pieces of code that are bundled in one little package. These components then have a state that contains the information about that specific component. Think for example of an input box, it's state would be the value that you put in it it's properties would be the name, placeholder, type, ...
 
 Every component is then able to perform actions (onClick, onChange, ...) which we can define through properties. I try to keep the idea of letting the components define actions through properties and my pages through stores. That way we got a state for a page but make sure that we can re-use the components.
 
@@ -57,52 +57,50 @@ So to bootstrap these folders create the following files if the module is called
 
 Resulting in the following structure:
 
-```
-- <MODULE>/
-    - <MODULE>.css
-    - <MODULE>.js
-    - package.json
-```
+    - <MODULE>/
+        - <MODULE>.css
+        - <MODULE>.js
+        - package.json
 
 ### <MODULE>.js example content
-```js
-import React, { PropTypes } from 'react';
-import './<MODULE>.css';
+    [js]
+    import React, { PropTypes } from 'react';
+    import './<MODULE>.css';
 
-class <MODULE> extends React.Component {
-	constructor(props) {
-		super(props);
-	}
+    class <MODULE> extends React.Component {
+    	constructor(props) {
+    		super(props);
+    	}
 
-    render() {
-        return (
-            <div className="<MODULE>">
-            </div>
-        );
+        render() {
+            return (
+                <div className="<MODULE>">
+                </div>
+            );
+        }
     }
-}
 
-export default <MODULE>;
-```
+    export default <MODULE>;
+    [/js]
 
 ### <MODULE>.css example content
-```css
-@import '../variables.css';
+    [css]
+    @import '../variables.css';
 
-.<MODULE>-Active {
+    .<MODULE>-Active {
 
-}
-```
+    }
+    [/css]
 
 ### package.json example content
-```json
-{
-	"name": "<MODULE>",
-	"private": true,
-	"version": "0.0.0",
-	"main": "./<MODULE>.js"
-}
-```
+    [json]
+    {
+    	"name": "<MODULE>",
+    	"private": true,
+    	"version": "0.0.0",
+    	"main": "./<MODULE>.js"
+    }
+    [/json]
 
 ## 6. The folder structure
 Creating the folder structure is the backbone of our application, it should be dynamic to grow over time, but not to dynamic so that we can actually understand it. While creating a private project for myself I found out over time that the following directory structure is a basic one where I can work with.
@@ -112,31 +110,29 @@ Keep in mind that there might be several things that you will not understand yet
 
 ### Folder structure
 
-```
-- src/
-    - actions/                      # Actions will be called by components and they will adapt a store, everything
-                                    # that ends on Server received a response from the server
-    - components/                   # Contains the components of our application (Includes pages!)
-        - App/                      # Main component, available on every page!
-        - elements/                 # consists out of all the different elements (drag and drop elements).
-                                    # Try to keep these storeless so that we can reuse them!
-        - layouts/                  # Different page layouts, example: Frontpage, Dashboard, Settings, ...
-        - pages/                    # Collection of elements bundled together to form a page (Settings, Team, ...)
-        - variables.css             # Contains CSS variables such as colors
-    - constants/                    # Contains the constants such as the actionTypes
-    - dispatchers/                  # Dispatchers, we make a difference between Server and View actions, more about this later
-    - stores/                       # The stores contain the state of a page as a whole,
-                                    # a nice example is a AuthStore, this will contain the details about a user and it's logged in state
-    - utils/                        # Contains API files, Example: AuthAPIUtils, makes API calls
-    - index.js                      # Entry point for our app
-    - routes.js                     # The routes for our app, we use react-router for this
-    - index.html
-- .babelrc                              # babel config, set on level 1
-- .gitignore                            # files not to be pushed to git
-- package.json                          # dependencies
-- README.md
-- webpack.config.js                     # workflow configuration for fast development
-```
+    - src/
+        - actions/                      # Actions will be called by components and they will adapt a store, everything
+                                        # that ends on Server received a response from the server
+        - components/                   # Contains the components of our application (Includes pages!)
+            - App/                      # Main component, available on every page!
+            - elements/                 # consists out of all the different elements (drag and drop elements).
+                                        # Try to keep these storeless so that we can reuse them!
+            - layouts/                  # Different page layouts, example: Frontpage, Dashboard, Settings, ...
+            - pages/                    # Collection of elements bundled together to form a page (Settings, Team, ...)
+            - variables.css             # Contains CSS variables such as colours
+        - constants/                    # Contains the constants such as the actionTypes
+        - dispatchers/                  # Dispatchers, we make a difference between Server and View actions, more about this later
+        - stores/                       # The stores contain the state of a page as a whole,
+                                        # a nice example is a AuthStore, this will contain the details about a user and it's logged in state
+        - utils/                        # Contains API files, Example: AuthAPIUtils, makes API calls
+        - index.js                      # Entry point for our app
+        - routes.js                     # The routes for our app, we use react-router for this
+        - index.html
+    - .babelrc                              # babel config, set on level 1
+    - .gitignore                            # files not to be pushed to git
+    - package.json                          # dependencies
+    - README.md
+    - webpack.config.js                     # workflow configuration for fast development
 
 ## 7. End Note
 Now that we have the folder structure we got the basic building blocks and architecture to start building our react app. The actual building of this app will be done in part 2 of this tutorial series. There we will create the code for the components and get it to load our page. After that part we will then create an API and interact with that API through the actions.

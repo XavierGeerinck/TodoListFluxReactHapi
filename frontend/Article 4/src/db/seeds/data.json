@@ -1,0 +1,39 @@
+{
+    "todo_item": [
+        {
+            "id": 1,
+            "description": "Go do grocery shoppings",
+            "is_checked": false,
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+		{
+            "id": 2,
+            "description": "Buy the book Algorithms 4th edition",
+            "is_checked": false,
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+		{
+            "id": 3,
+            "description": "Get a coffee",
+            "is_checked": false,
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+		{
+            "id": 4,
+            "description": "Finish the 5th part of this tutorial series",
+            "is_checked": false,
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        },
+		{
+            "id": 5,
+            "description": "A finished item",
+            "is_checked": true,
+            "created_at": "2015-08-08T08:58:43.000Z",
+            "updated_at": "2015-08-08T08:58:47.000Z"
+        }
+    ]
+}
